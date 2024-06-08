@@ -13,7 +13,7 @@ class LocalStorage:
 
     def _save(self):
         with open(self.file_path, 'w') as file:
-            json.dump(self._storage, file, default=lambda o: o.__dict__, indent=4)
+            json.dump({key: value.__dict__ for key, value in self._storage.items()}, file, indent=4)
 
     def create(self, event: Event) -> str:
         if event.date in self._storage:

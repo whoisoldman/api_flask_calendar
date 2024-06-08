@@ -10,7 +10,7 @@ logic = EventLogic()
 def create_event():
     data = request.get_json()
     try:
-        date, title, text = data['data'].split('|')
+        date, title, text = data.split('|')
         if len(title) > 30 or len(text) > 200:
             return jsonify({'error': 'Validation error'}), 400
         event = Event(id=str(uuid.uuid4()), date=date, title=title, text=text)
@@ -39,7 +39,7 @@ def read_event(event_id):
 def update_event(event_id):
     data = request.get_json()
     try:
-        date, title, text = data['data'].split('|')
+        date, title, text = data.split('|')
         if len(title) > 30 or len(text) > 200:
             return jsonify({'error': 'Validation error'}), 400
         event = Event(id=event_id, date=date, title=title, text=text)
