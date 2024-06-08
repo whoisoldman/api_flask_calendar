@@ -53,15 +53,17 @@ def update_event(event_id):
     data = request.get_json()
     try:
         date, title, text = data['data'].split('|')
-        if len(title) > 30 or len(text) > 200:
-            return jsonify_unicode({'error': 'Validation error'}, 400)
+        if len(title) > 30:
+            return jsonify_unicode({'error': 'Заголовок больше 30 знаков'}, 400)
+        if len(text) > 200:
+            return jsonify_unicode({'error': 'Текст больше 200 знаков'}, 400)
         event = Event(id=event_id, date=date, title=title, text=text)
         logic.update(event_id, event)
         return jsonify_unicode({'message': 'Event updated'}, 200)
     except LogicException as e:
         return jsonify_unicode({'error': str(e)}, 400)
 
-@app.route('/api/v1/calendar/<event_id>/', methods['DELETE'])
+@app.route('/api/v1/calendar/<event_id>/', methods=['DELETE'])
 def delete_event(event_id):
     try:
         logic.delete(event_id)
