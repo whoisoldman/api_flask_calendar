@@ -3,7 +3,7 @@
 ## запуск приложения
 
 ```
-~./venv/bin/flask --app ./acme/server.py run~
+~~./venv/bin/flask --app ./acme/server.py run~~
 ./venv/bin/flask --app ./server.py run
 
 ```
