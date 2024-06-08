@@ -23,7 +23,7 @@ curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: applicatio
 curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"id": "your_custom_id", "data": "2024-06-08|Название события|Текст события"}'
 
 ```
-#### Далее для тестов сгенерируйте этот код создания события:
+#### Далее для тестов используйте этот код создания события:
 ```
 curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"id": "1", "data": "2024-06-08|Название события|Текст события"}'
 
