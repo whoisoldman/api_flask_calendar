@@ -3,9 +3,7 @@
 ## запуск приложения
 
 ```
-> OLD./venv/bin/flask --app ./acme/server.py run
 ./venv/bin/flask --app ./server.py run
-
 ```
 Теперь сервис календаря будет запущен и доступен по адресу http://127.0.0.1:5000/api/v1/calendar/. Вы можете использовать инструменты, такие как Postman или curl, для тестирования API.
 
