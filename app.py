@@ -8,9 +8,12 @@ logic = EventLogic()
 
 @app.route('/api/v1/calendar/', methods=['POST'])
 def create_event():
-    data = request.get_json()
+    data = request.get_json(force=True, silent=True)  # Используем force=True, чтобы принудительно разбирать JSON, и silent=True, чтобы избежать вывода ошибок при некорректном JSON
+    if data is None:
+        return jsonify({'error': 'Invalid JSON'}), 400
+
     try:
-        date, title, text = data.split('|')
+        date, title, text = data['data'].split('|')
         if len(title) > 30 or len(text) > 200:
             return jsonify({'error': 'Validation error'}), 400
         event = Event(id=str(uuid.uuid4()), date=date, title=title, text=text)

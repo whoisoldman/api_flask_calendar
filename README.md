@@ -13,8 +13,20 @@
 ## cURL тестирование
 
 ### Добавление нового события
+
+Автоматическая (randome) инициация "id" события:
 ```
 curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"data": "2024-06-08|Название события|Текст события"}'
+```
+Ручная инициация "id" события, где, к примеру, "your_custom_id" = "1":
+```
+curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"id": "your_custom_id", "data": "2024-06-08|Название события|Текст события"}'
+
+```
+Далее для тестов сгенерируйте этот код создания события:
+```
+curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"id": "1", "data": "2024-06-08|Название события|Текст события"}'
+
 ```
 
 ### Получение списка всех событий
