@@ -44,44 +44,44 @@ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X DELETE
 ```
 $ curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"data": "2024-06-08|Заголовок события|Текст события"}'
 ```
-{"message": "Event created"}
+Ответ: {"message": "Event created"}
 
 ```
 $ curl http://127.0.0.1:5000/api/v1/calendar/
 ```
-[{"id": "<event_id>", "date": "2024-06-08", "title": "Заголовок события", "text": "Текст события"}]
+Ответ: [{"id": "<event_id>", "date": "2024-06-08", "title": "Заголовок события", "text": "Текст события"}]
 
 ```
 $ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/
 ```
-{"id": "<event_id>", "date": "2024-06-08", "title": "Заголовок события", "text": "Текст события"}
+Ответ: {"id": "<event_id>", "date": "2024-06-08", "title": "Заголовок события", "text": "Текст события"}
 
 ```
 $ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X PUT -H "Content-Type: application/json" -d '{"data": "2024-06-08|Новый заголовок события|Новый текст событи"}'
 ```
-{"message": "Event updated"}
+Ответ: {"message": "Event updated"}
 
 ```
 $ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/
 ```
-{"id": "<event_id>", "date": "2024-06-08", "title": "Новый заголовок события", "text": "Новый текст"}
+Ответ: {"id": "<event_id>", "date": "2024-06-08", "title": "Новый заголовок события", "text": "Новый текст"}
 
 ```
 $ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X PUT -H "Content-Type: application/json" -d '{"data": "2024-06-08|Заголовок события слишком длинный|Текст заголовка"}'
 ```
-{"error": "Заголовок больше 30 знаков"}
+Ответ: {"error": "Заголовок больше 30 знаков"}
 
 ```
 $ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X PUT -H "Content-Type: application/json" -d '{"data": "2024-06-08|Заголовок события|Текст слииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииишком длинный"}'
 ```
-{"error": "Текст больше 200 знаков"}
+Ответ: {"error": "Текст больше 200 знаков"}
 
 ```
 $ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X DELETE
 ```
-{"message": "Event deleted"}
+Ответ: {"message": "Event deleted"}
 
 ```
 $ curl http://127.0.0.1:5000/api/v1/calendar/
 ```
-[]
+Ответ: []
