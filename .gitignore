@@ -1,0 +1,8 @@
+# my files
+.DS_Store
+
+# my folders
+zzz/
+
+# IDE
+.vscode
