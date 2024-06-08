@@ -1,8 +1,10 @@
 blinker==1.8.2
 click==8.1.7
 Flask==3.0.3
+importlib==1.0.4
 itsdangerous==2.2.0
 Jinja2==3.1.4
+logging==0.4.9.6
 MarkupSafe==2.1.5
 typing==3.7.4.3
 uuid==1.30
