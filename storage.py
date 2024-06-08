@@ -1,50 +1,56 @@
-from typing import List, Dict
 import json
+import os
 from model import Event
 
-class LocalStorage:
-    def __init__(self):
-        self.file_path = 'storage.json'
-        try:
-            with open(self.file_path, 'r') as file:
-                self._storage: Dict[str, Event] = json.load(file)
-        except FileNotFoundError:
-            self._storage: Dict[str, Event] = {}
+class StorageException(Exception):
+    pass
 
-    def _save(self):
-        with open(self.file_path, 'w') as file:
-            json.dump({key: value.__dict__ for key, value in self._storage.items()}, file, indent=4)
+class LocalStorage:
+    def __init__(self, file_path='storage.json'):
+        self._file_path = file_path
+        self._load_storage()
+
+    def _load_storage(self):
+        if not os.path.exists(self._file_path):
+            self._storage = {}
+            self._save_storage()
+        else:
+            with open(self._file_path, 'r', encoding='utf-8') as file:
+                self._storage = json.load(file)
+
+    def _save_storage(self):
+        try:
+            with open(self._file_path, 'w', encoding='utf-8') as file:
+                json.dump(self._storage, file, ensure_ascii=False, indent=4)
+        except Exception as ex:
+            raise StorageException(f"Failed to save storage: {ex}")
 
     def create(self, event: Event) -> str:
-        if event.date in self._storage:
-            raise Exception('Event already exists for this date')
-        self._storage[event.date] = event
-        self._save()
+        event_dict = event.to_dict()
+        if event_dict['id'] in self._storage:
+            raise StorageException("Event already exists with this ID")
+        self._storage[event_dict['id']] = event_dict
+        self._save_storage()
         return event.id
 
-    def list(self) -> List[Event]:
-        return list(self._storage.values())
+    def list(self):
+        return [Event.from_dict(e) for e in self._storage.values()]
 
     def read(self, event_id: str) -> Event:
-        for event in self._storage.values():
-            if event.id == event_id:
-                return event
-        raise Exception('Event not found')
+        event = self._storage.get(event_id)
+        if event:
+            return Event.from_dict(event)
+        else:
+            raise StorageException("Event does not exist")
 
-    def update(self, event_id: str, updated_event: Event):
-        if updated_event.date in self._storage and self._storage[updated_event.date].id != event_id:
-            raise Exception('Event already exists for this date')
-        for date, event in self._storage.items():
-            if event.id == event_id:
-                self._storage[date] = updated_event
-                self._save()
-                return
-        raise Exception('Event not found')
+    def update(self, event_id: str, event: Event):
+        if event_id not in self._storage:
+            raise StorageException("Event does not exist")
+        self._storage[event_id] = event.to_dict()
+        self._save_storage()
 
     def delete(self, event_id: str):
-        for date in list(self._storage.keys()):
-            if self._storage[date].id == event_id:
-                del self._storage[date]
-                self._save()
-                return
-        raise Exception('Event not found')
+        if event_id not in self._storage:
+            raise StorageException("Event does not exist")
+        del self._storage[event_id]
+        self._save_storage()

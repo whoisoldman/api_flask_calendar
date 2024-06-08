@@ -42,50 +42,50 @@ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X DELETE
 ## Примеры выполнения команд с выводом
 
 ```
-$ curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"data": "2024-06-08|Заголовок события|Текст события"}'
+curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"data": "2024-06-08|Заголовок события|Текст события"}'
 ```
 Вывод: {"message": "Event created"}
 
 ```
-$ curl http://127.0.0.1:5000/api/v1/calendar/
+curl http://127.0.0.1:5000/api/v1/calendar/
 ```
 Вывод: [{"id": "<event_id>", "date": "2024-06-08", "title": "Заголовок события", "text": "Текст события"}]
 
 ```
-$ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/
+curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/
 ```
 Вывод: {"id": "<event_id>", "date": "2024-06-08", "title": "Заголовок события", "text": "Текст события"}
 
 ```
-$ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X PUT -H "Content-Type: application/json" -d '{"data": "2024-06-08|Новый заголовок события|Новый текст событи"}'
+curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X PUT -H "Content-Type: application/json" -d '{"data": "2024-06-08|Новый заголовок события|Новый текст событи"}'
 ```
 Вывод: {"message": "Event updated"}
 
 ```
-$ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/
+curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/
 ```
 Вывод: {"id": "<event_id>", "date": "2024-06-08", "title": "Новый заголовок события", "text": "Новый текст"}
 
 ```
-$ curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X DELETE
+curl http://127.0.0.1:5000/api/v1/calendar/<event_id>/ -X DELETE
 ```
 Вывод: {"message": "Event deleted"}
 
 ```
-$ curl http://127.0.0.1:5000/api/v1/calendar/
+curl http://127.0.0.1:5000/api/v1/calendar/
 ```
 Вывод: []
 
 ## Примеры выполнения команд с выводом ошибок
 
 ```
-$ curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"data": "2024-06-08|Заголовок события слишком длинный|Текст заголовка"}'
+curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"data": "2024-06-08|Заголовок события слишком длинный|Текст заголовка"}'
 ```
 При создании события с заголовком больше 30 знаков.
 Вывод: {"error": "Заголовок больше 30 знаков"}
 
 ```
-$ curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"data": "2024-06-08|Заголовок события|Текст слииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииишком длинный"}'
+curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -H "Content-Type: application/json" -d '{"data": "2024-06-08|Заголовок события|Текст слииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииииишком длинный"}'
 ```
 При создании события с текстом больше 200 знаков.
 Вывод: {"error": "Текст больше 200 знаков"}
