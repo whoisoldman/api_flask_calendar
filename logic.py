@@ -1,3 +1,58 @@
+"""
+<EN>
+Event Logic Management
+
+This module provides a class to handle the business logic for managing events, including validation and interaction
+with the underlying database through the EventDB class.
+
+Classes:
+    LogicException: Custom exception class for logic operation errors.
+    EventLogic: Class for managing the business logic of events.
+
+Constants:
+    TITLE_LIMIT (int): Maximum allowed length for the event title.
+    TEXT_LIMIT (int): Maximum allowed length for the event text.
+
+Methods:
+    __init__(): Initialize the EventLogic with a database instance.
+    _validate_event(event: model.Event): Validate the event object to ensure it meets business rules.
+    create(event: model.Event) -> str: Create a new event after validation.
+    list() -> List[model.Event]: List all events.
+    read(event_id: str) -> model.Event: Read a specific event by ID.
+    update(event_id: str, event: model.Event): Update an existing event after validation.
+    delete(event_id: str): Delete a specific event by ID.
+
+Exceptions:
+    LogicException: Raised for any errors occurring during logic operations.
+"""
+"""
+<RUS>
+Управление логикой событий
+
+Этот модуль предоставляет класс для обработки бизнес-логики управления событиями, включая валидацию и взаимодействие
+с базой данных через класс EventDB.
+
+Классы:
+    LogicException: Пользовательский класс исключений для ошибок логических операций.
+    EventLogic: Класс для управления бизнес-логикой событий.
+
+Константы:
+    TITLE_LIMIT (int): Максимально допустимая длина заголовка события.
+    TEXT_LIMIT (int): Максимально допустимая длина текста события.
+
+Методы:
+    __init__(): Инициализирует EventLogic с экземпляром базы данных.
+    _validate_event(event: model.Event): Проверяет объект события на соответствие бизнес-правилам.
+    create(event: model.Event) -> str: Создает новое событие после проверки.
+    list() -> List[model.Event]: Получает список всех событий.
+    read(event_id: str) -> model.Event: Считывает конкретное событие по ID.
+    update(event_id: str, event: model.Event): Обновляет существующее событие после проверки.
+    delete(event_id: str): Удаляет конкретное событие по ID.
+
+Исключения:
+    LogicException: Возникает при любых ошибках логических операций.
+"""
+
 from typing import List
 import model
 import db

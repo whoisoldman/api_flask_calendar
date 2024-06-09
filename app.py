@@ -1,3 +1,50 @@
+"""
+<EN>
+Calendar Event API
+
+This module provides a simple REST API for managing calendar events using Flask.
+
+Routes:
+    POST /api/v1/calendar/ - Create a new event
+    GET /api/v1/calendar/ - List all events
+    GET /api/v1/calendar/<event_id>/ - Get details of a specific event
+    PUT /api/v1/calendar/<event_id>/ - Update an existing event
+    DELETE /api/v1/calendar/<event_id>/ - Delete an event
+
+Functions:
+    create_event(): Create a new event with given data
+    list_events(): List all events
+    read_event(event_id): Get details of a specific event
+    update_event(event_id): Update an existing event with given data
+    delete_event(event_id): Delete an event
+
+Exceptions:
+    LogicException: Custom exception raised for logical errors in event operations
+"""
+"""
+<RUS>
+API для управления событиями календаря
+
+Этот модуль предоставляет простой REST API для управления событиями календаря с использованием Flask.
+
+Маршруты:
+    POST /api/v1/calendar/ - Создать новое событие
+    GET /api/v1/calendar/ - Получить список всех событий
+    GET /api/v1/calendar/<event_id>/ - Получить информацию о конкретном событии
+    PUT /api/v1/calendar/<event_id>/ - Обновить существующее событие
+    DELETE /api/v1/calendar/<event_id>/ - Удалить событие
+
+Функции:
+    create_event(): Создать новое событие с заданными данными
+    list_events(): Получить список всех событий
+    read_event(event_id): Получить информацию о конкретном событии
+    update_event(event_id): Обновить существующее событие с заданными данными
+    delete_event(event_id): Удалить событие
+
+Исключения:
+    LogicException: Пользовательское исключение, возникающее при логических ошибках в операциях с событиями
+"""
+
 from flask import Flask, request, jsonify
 from logic import EventLogic, LogicException
 from model import Event
