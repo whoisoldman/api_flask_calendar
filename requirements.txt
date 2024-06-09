@@ -1,11 +1,14 @@
 blinker==1.8.2
+certifi==2024.6.2
+charset-normalizer==3.3.2
 click==8.1.7
 Flask==3.0.3
-importlib==1.0.4
+idna==3.7
 itsdangerous==2.2.0
 Jinja2==3.1.4
-logging==0.4.9.6
+jsonify==0.5
 MarkupSafe==2.1.5
-typing==3.7.4.3
+requests==2.32.3
+urllib3==2.2.1
 uuid==1.30
 Werkzeug==3.0.3
