@@ -3,7 +3,11 @@
 
 # my folders
 zzz/
-__pycache__/
 
 # IDE
 .vscode
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
