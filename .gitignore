@@ -3,6 +3,7 @@
 
 # my folders
 zzz/
+__pycache__/
 
 # IDE
 .vscode
